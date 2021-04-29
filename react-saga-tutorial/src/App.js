@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
 
-import {connect, connet} from 'react-redux'
+import { connect } from 'react-redux'
 
-import {fetchData} from './redux/actions'
+import { fetchData } from './redux/actions'
 export class App extends Component {
 
 
   constructor(props) {
     super(props)
-  
-    this.state = {
-       
-    }
-    this.handleFetchData =this.handleFetchData.bind(this)
+    this.handleFetchData = this.handleFetchData.bind(this)
   }
-  
+
   handleFetchData() {
     this.props.fetchData(2);
   }
@@ -22,9 +18,9 @@ export class App extends Component {
     return (
       <div>
         <button
-        onClick={this.handleFetchData}
-        className="btn btn-primary"
-        >Fetch</button>
+          onClick={this.handleFetchData}
+          className="btn btn-primary"
+        >Fetch User</button>
 
         <div>
           {
@@ -35,20 +31,20 @@ export class App extends Component {
     )
   }
 }
-const mapStateToProps=(state)=>{
-  return{
+const mapStateToProps = (state) => {
+  return {
     user: state.fetchDataReducer.user,
     error: state.fetchDataReducer.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
-    fetchData:(id)=>{
+  return {
+    fetchData: (id) => {
       dispatch(fetchData(id))
     }
   }
 }
 
 
-export default connect(mapStateToProps , mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
